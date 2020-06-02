@@ -1,17 +1,12 @@
-import express from 'express';
+import express, { response, request } from 'express';
+import routes from './routes';
 
 const app = express ();
 
-app.get('/users', (request, response) => {
-    console.log('listagem de usuarios');
+// por padrão o express não entende qual o tipo da aplicação
+// então preciso dizer pra ele que eu preciso que ele entenda requisições tipo JSON
+app.use(express.json());
 
-    response.json([
-        'Gustavo',
-        'Maria Clara',
-        'Pam Pam',
-        'Nalinha',
-        'Lucy'
-    ]);
-})
+app.use(routes);
 
 app.listen(3333);
